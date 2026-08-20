@@ -92,15 +92,6 @@ type FosterOrder struct {
 	UpdatedAt      time.Time      `json:"updateTime"`
 }
 
-func (o FosterOrder) RecordsMutable() bool {
-	switch o.Status {
-	case "IN_PROGRESS", "COMPLETED":
-		return true
-	default:
-		return false
-	}
-}
-
 type DailyRecord struct {
 	ID         int64     `json:"recordId"`
 	OrderID    int64     `json:"orderId"`

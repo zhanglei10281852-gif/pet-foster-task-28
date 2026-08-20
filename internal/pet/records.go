@@ -67,7 +67,7 @@ func (s *Service) UpdateRecord(ctx context.Context, p Principal, input DailyReco
 	if err != nil {
 		return DailyRecord{}, err
 	}
-	if !order.RecordsMutable() {
+	if order.Status != "IN_PROGRESS" {
 		return DailyRecord{}, fmt.Errorf("%w: completed foster records cannot be changed", ErrInvalidState)
 	}
 	recordDate := input.RecordDate.UTC().Truncate(24 * time.Hour)
